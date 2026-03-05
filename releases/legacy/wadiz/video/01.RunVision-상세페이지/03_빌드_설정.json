@@ -1,0 +1,21 @@
+{
+  "title": "RunVision 와디즈 상세페이지",
+  "module_number": "wadiz-landing",
+  "voice": "ko-KR-HyunsuMultilingualNeural",
+  "rate": "+10%",
+  "section_slide_map": [
+    {"section": 0,  "slides": [1,  1],  "title": "히어로"},
+    {"section": 1,  "slides": [2,  2],  "title": "페인포인트"},
+    {"section": 2,  "slides": [3,  3],  "title": "문제 정의"},
+    {"section": 3,  "slides": [4,  4],  "title": "스토리"},
+    {"section": 4,  "slides": [5,  5],  "title": "솔루션"},
+    {"section": 5,  "slides": [6,  6],  "title": "사용 방법"},
+    {"section": 6,  "slides": [7,  7],  "title": "사용 후기"},
+    {"section": 7,  "slides": [8,  8],  "title": "제작자 소개"},
+    {"section": 8,  "slides": [9,  9],  "title": "혜택"},
+    {"section": 9,  "slides": [10, 10], "title": "환불 보장"},
+    {"section": 10, "slides": [11, 11], "title": "비교"},
+    {"section": 11, "slides": [12, 12], "title": "추천 대상"},
+    {"section": 12, "slides": [13, 13], "title": "최종 CTA"}
+  ]
+}

@@ -2,7 +2,7 @@
 .env
 
 # Output folders (생성된 결과물)
-output/
+/output/
 output_*/
 
 # Python
