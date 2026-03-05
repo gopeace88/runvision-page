@@ -17,7 +17,7 @@ load_dotenv()
 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
-# Gemini 3 Pro Image Preview 모델 (Nano Banana Pro)
+# Gemini 3 Pro Image Preview 모델 - 한글 렌더링 지원
 MODEL_NAME = "gemini-3-pro-image-preview"
 GEMINI_API_URL = f"https://generativelanguage.googleapis.com/v1beta/models/{MODEL_NAME}:generateContent"
 
@@ -122,7 +122,7 @@ ABSOLUTELY AVOID:
             f"{GEMINI_API_URL}?key={GEMINI_API_KEY}",
             headers=headers,
             json=payload,
-            timeout=180  # 3분 타임아웃
+            timeout=600  # 10분 타임아웃 (Pro 모델은 느림)
         )
 
         if response.status_code != 200:
@@ -236,17 +236,18 @@ def test_api_connection() -> bool:
 
     print(f"API Key found: {GEMINI_API_KEY[:10]}...")
 
-    # 간단한 텍스트 생성으로 연결 테스트
+    # 가벼운 텍스트 모델로 연결 테스트 (gemini-3-pro-image-preview는 텍스트 요청 시 느림)
+    TEST_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent"
     headers = {"Content-Type": "application/json"}
     payload = {
         "contents": [{
-            "parts": [{"text": "Say 'API connection successful' in Korean."}]
+            "parts": [{"text": "Say 'OK'"}]
         }]
     }
 
     try:
         response = requests.post(
-            f"{GEMINI_API_URL}?key={GEMINI_API_KEY}",
+            f"{TEST_URL}?key={GEMINI_API_KEY}",
             headers=headers,
             json=payload,
             timeout=30

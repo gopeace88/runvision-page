@@ -90,21 +90,23 @@ def generate_section_prompts(brief: Dict[str, Any]) -> Dict[str, Dict]:
 
 === PHOTOGRAPHY STYLE (MANDATORY) ===
 - Use REALISTIC PHOTOGRAPHY style, NOT illustrations or cartoons
-- When showing people: Use REAL HUMAN MODELS with natural skin texture
-- Professional photography lighting and composition
-- Photo-realistic quality like high-end Korean beauty advertisements
-- Style reference: Sulwhasoo, Innisfree, Laneige advertising quality
+- When showing people: Use REAL HUMAN MODELS, athletic Korean runners (male/female, 20s-40s)
+- Professional sports/tech advertising photography lighting and composition
+- Photo-realistic quality like high-end sports tech advertisements (Garmin, Nike, COROS quality)
+- Style reference: Garmin Forerunner campaign, COROS watch advertising, Nike Running editorial
 
 === DESIGN STYLE ===
-Style: {style}, modern, professional Korean landing page design.
-Color palette: Primary {primary}, Accent {accent}, clean white/gray backgrounds.
-Typography: Bold Korean headlines, clean body text, professional atmosphere.
+Style: {style}, modern, premium sport-tech Korean landing page design.
+Color palette: Primary {primary} (deep blue), Accent {accent} (electric cyan), dark navy/black backgrounds for premium feel.
+Typography: Bold Korean headlines (heavy weight), clean technical body text, high-contrast.
+Mood: Performance, precision, innovation — NOT lifestyle/fashion
 
 === FINAL CHECKLIST ===
 ✓ Image is EXACTLY 1200 pixels wide
 ✓ Content fills full width with NO side margins
-✓ People shown are realistic photos, NOT illustrations
+✓ People shown are realistic athletic photos, NOT illustrations
 ✓ Korean text is clear and readable
+✓ Mood is sport-tech premium, NOT beauty/fashion
 """
 
     prompts = {
@@ -486,11 +488,25 @@ def generate_landing_page(
 
 
 if __name__ == "__main__":
-    # 샘플 상세페이지 생성
+    import sys
+
+    # RunVision 상세페이지 생성 여부 확인
+    use_runvision = "--runvision" in sys.argv or True  # 기본값: RunVision
+
+    if use_runvision:
+        sys.path.insert(0, str(PROJECT_ROOT))
+        from scripts.runvision_brief import create_runvision_brief
+        brief = create_runvision_brief()
+        output_dir = "output/runvision-wadiz"
+        print("=== RunVision 와디즈 상세페이지 생성 ===")
+    else:
+        brief = None  # 샘플 사용
+        output_dir = "output"
+
     result = generate_landing_page(
-        brief=None,  # 샘플 사용
-        output_dir="output",
-        skip_generation=False  # 실제 생성
+        brief=brief,
+        output_dir=output_dir,
+        skip_generation=False
     )
 
     if result:
