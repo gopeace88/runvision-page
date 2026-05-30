@@ -4,6 +4,7 @@
 # Output folders (생성된 결과물)
 /output/
 output_*/
+releases/legacy/
 
 # Python
 __pycache__/
